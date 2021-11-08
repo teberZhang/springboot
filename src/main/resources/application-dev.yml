@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    username: root
+    password: a123456
+    url: jdbc:mysql://localhost:3307/springboot?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.example.entity.springboot
+
+logging:
+  level:
+    com.example.springboot.mapper: debug
+
