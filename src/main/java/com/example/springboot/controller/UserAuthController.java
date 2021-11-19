@@ -4,7 +4,9 @@ import com.example.springboot.common.BaseResult;
 import com.example.springboot.common.annotation.LoginUser;
 import com.example.springboot.common.annotation.NeedAuth;
 import com.example.springboot.common.annotation.PassToken;
+import com.example.springboot.common.dto.AdminUserDTO;
 import com.example.springboot.common.dto.LoginDTO;
+import com.example.springboot.common.form.AdminUserListForm;
 import com.example.springboot.common.form.ModifyPasswordForm;
 import com.example.springboot.entity.AdminUser;
 import com.example.springboot.service.AdminUserService;
@@ -40,6 +42,13 @@ public class UserAuthController {
         }
 
         return adminUserService.modifyPassword(user, form);
+    }
+
+    @NeedAuth
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    public BaseResult<AdminUserDTO> list(@RequestBody AdminUserListForm form) {
+
+        return adminUserService.list(form);
     }
 
 }

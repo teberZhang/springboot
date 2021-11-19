@@ -8,7 +8,9 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.springboot.common.BaseResult;
 import com.example.springboot.common.config.SpringToBootConfig;
+import com.example.springboot.common.dto.AdminUserDTO;
 import com.example.springboot.common.dto.LoginDTO;
+import com.example.springboot.common.form.AdminUserListForm;
 import com.example.springboot.common.form.ModifyPasswordForm;
 import com.example.springboot.entity.AdminUser;
 import com.example.springboot.mapper.AdminUserMapper;
@@ -76,6 +78,12 @@ public class AdminUserService {
         adminUserMapper.UpdateById(adminUser);
 
         return BaseResult.ok();
+    }
+
+    public BaseResult<AdminUserDTO> list(AdminUserListForm form) {
+
+        AdminUserDTO adminUserDTO = new AdminUserDTO();
+        return BaseResult.ok(adminUserDTO);
     }
 
     public AdminUser findUserById(int id) {
