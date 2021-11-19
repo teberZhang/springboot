@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class User {
     private Integer id;
+    private Integer age;
     private String username;
     private String password;
     private String address;
@@ -13,6 +14,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", age=" + age +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +

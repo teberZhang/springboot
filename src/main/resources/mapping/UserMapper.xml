@@ -23,6 +23,9 @@
             <if test="user.username != null">
                 username,
             </if>
+            <if test="user.age != null">
+                age,
+            </if>
             <if test="user.password != null">
                 password,
             </if>
@@ -33,6 +36,9 @@
         <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
             <if test="user.username != null">
                 #{user.username,jdbcType=VARCHAR},
+            </if>
+            <if test="user.age != null">
+                #{user.age,jdbcType=INTEGER},
             </if>
             <if test="user.password != null">
                 #{user.password,jdbcType=VARCHAR},
@@ -48,6 +54,9 @@
         <set>
             <if test="user.username != null">
                 username = #{user.username},
+            </if>
+            <if test="user.age != null">
+                age = #{user.age},
             </if>
             <if test="user.password != null">
                 password = #{user.password},

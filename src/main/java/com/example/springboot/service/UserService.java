@@ -1,8 +1,8 @@
 package com.example.springboot.service;
 
+import com.example.springboot.common.form.UserAddForm;
 import com.example.springboot.entity.User;
 import com.example.springboot.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,6 +37,20 @@ public class UserService {
     }
 
     public String add(User user) {
+        int result = userMapper.Add(user);
+        if (result == 1) {
+            return "添加成功";
+        } else {
+            return "添加失败";
+        }
+    }
+
+    public String userAdd(UserAddForm userAddForm) {
+        User user = new User();
+        user.setAge(userAddForm.getAge());
+        user.setPassword(userAddForm.getPassword());
+        user.setUsername(userAddForm.getUsername());
+        user.setAddress(userAddForm.getAddress());
         int result = userMapper.Add(user);
         if (result == 1) {
             return "添加成功";
