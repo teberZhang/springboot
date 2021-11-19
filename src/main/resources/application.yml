@@ -1,3 +1,7 @@
 spring:
   profiles:
     active: dev
+spring-to-boot:
+  sync-day-before: -7
+  sync-day-before-desc: 7
+  token-expire-hour: 12

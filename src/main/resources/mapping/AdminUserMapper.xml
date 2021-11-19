@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.AdminUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.springboot.entity.AdminUser">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+    </resultMap>
+
+    <select id="Sel" resultType="com.example.springboot.entity.AdminUser">
+        select * from admin_user where 1=1
+        <if test="adminUser.id != null">
+            AND id = #{adminUser.id}
+        </if>
+        <if test="adminUser.name != null">
+            AND name = #{adminUser.name}
+        </if>
+        limit 1
+    </select>
+
+    <update id="UpdateById" parameterType="com.example.springboot.entity.AdminUser">
+        UPDATE user
+        <set>
+            <if test="adminUser.password != null">
+                password = #{adminUser.password},
+            </if>
+        </set>
+        WHERE
+        id=#{adminUser.id}
+    </update>
+
+
+</mapper>
