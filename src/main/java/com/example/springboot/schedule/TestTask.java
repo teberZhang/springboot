@@ -14,7 +14,7 @@ import java.util.Date;
 public class TestTask {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(initialDelay = 3 * 1000, fixedDelay = 10 * 1000)
+    @Scheduled(initialDelay = 3 * 1000, fixedDelay = 60 * 1000)
     public void testTodo() {
 
         log.info("testTodo begin-----：" + dateFormat.format(new Date()));
