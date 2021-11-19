@@ -21,7 +21,7 @@
     </select>
 
     <update id="UpdateById" parameterType="com.example.springboot.entity.AdminUser">
-        UPDATE user
+        UPDATE admin_user
         <set>
             <if test="adminUser.password != null">
                 password = #{adminUser.password},

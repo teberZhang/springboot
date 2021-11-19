@@ -1,13 +1,12 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.common.BaseResult;
-import com.example.springboot.common.form.ModifyPasswordForm;
-import com.example.springboot.common.annotation.PassToken;
-import com.example.springboot.common.annotation.NeedAuth;
 import com.example.springboot.common.annotation.LoginUser;
+import com.example.springboot.common.annotation.NeedAuth;
+import com.example.springboot.common.annotation.PassToken;
 import com.example.springboot.common.dto.LoginDTO;
+import com.example.springboot.common.form.ModifyPasswordForm;
 import com.example.springboot.entity.AdminUser;
-import com.example.springboot.mapper.AdminUserMapper;
 import com.example.springboot.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -25,9 +24,6 @@ public class UserAuthController {
     @Autowired
     private AdminUserService adminUserService;
 
-    @Autowired
-    private AdminUserMapper adminUserMapper;
-
     @PassToken
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public BaseResult<LoginDTO> login(@RequestBody AdminUser user) {
@@ -39,7 +35,6 @@ public class UserAuthController {
     @RequestMapping(value = "/modify-password", method = RequestMethod.POST)
     public BaseResult<?> modifyPassword(@LoginUser AdminUser user, @Valid @RequestBody ModifyPasswordForm form, BindingResult bindingResult) {
 
-        System.out.println();
         if (bindingResult.hasErrors()) {
             return BaseResult.errorMsg("请正确填写密码");
         }
