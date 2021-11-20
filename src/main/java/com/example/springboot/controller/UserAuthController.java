@@ -12,10 +12,7 @@ import com.example.springboot.entity.AdminUser;
 import com.example.springboot.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -44,9 +41,9 @@ public class UserAuthController {
         return adminUserService.modifyPassword(user, form);
     }
 
-    @NeedAuth
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public BaseResult<AdminUserDTO> list(@RequestBody AdminUserListForm form) {
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseResult<AdminUserDTO> list(AdminUserListForm form) {
 
         return adminUserService.list(form);
     }

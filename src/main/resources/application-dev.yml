@@ -10,6 +10,10 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml
   type-aliases-package: com.example.entity.springboot
+  onfiguration-properties:
+    offsetAsPageNum: true
+    rowBoundsWithCount: true
+    reasonable: true
 spring-to-boot:
   sync-day-before: -7
   sync-day-before-desc: 7

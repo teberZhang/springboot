@@ -32,4 +32,12 @@
     </update>
 
 
+    <select id="SelectAllAdminUserByPageHelper" resultType="com.example.springboot.entity.AdminUser" parameterType="com.example.springboot.common.form.AdminUserListForm">
+        select * from admin_user where 1=1
+        <if test="queryParam.name != null">
+            AND name = #{queryParam.name}
+        </if>
+    </select>
+
+
 </mapper>

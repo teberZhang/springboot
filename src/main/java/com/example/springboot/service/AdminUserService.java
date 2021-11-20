@@ -1,5 +1,4 @@
 package com.example.springboot.service;
-
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
@@ -14,10 +13,13 @@ import com.example.springboot.common.form.AdminUserListForm;
 import com.example.springboot.common.form.ModifyPasswordForm;
 import com.example.springboot.entity.AdminUser;
 import com.example.springboot.mapper.AdminUserMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -82,7 +84,16 @@ public class AdminUserService {
 
     public BaseResult<AdminUserDTO> list(AdminUserListForm form) {
 
+        System.out.println("form:" + form);
+        PageHelper.startPage(form.getPage(), form.getPageSize());
+        List<AdminUser> adminUserList = adminUserMapper.SelectAllAdminUserByPageHelper(form);
+        PageInfo<AdminUser> pageInfo = new PageInfo<AdminUser>(adminUserList);
         AdminUserDTO adminUserDTO = new AdminUserDTO();
+        System.out.println("adminUserList = " + adminUserList);
+        adminUserDTO.setList(adminUserList);
+        adminUserDTO.setPage(form.getPage());
+        adminUserDTO.setPageSize(form.getPageSize());
+        adminUserDTO.setCount(pageInfo.getTotal());
         return BaseResult.ok(adminUserDTO);
     }
 

@@ -10,7 +10,7 @@ public class AdminUserDTO {
 
     private List<AdminUser> list;
 
-    private Integer count;
+    private Long count;
 
     private Integer page;
 

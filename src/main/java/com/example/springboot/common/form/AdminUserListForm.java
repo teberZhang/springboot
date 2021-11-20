@@ -9,7 +9,7 @@ public class AdminUserListForm {
 
     private Integer pageSize = Constants.DEFAULT_PAGE_SIZE;
 
-    private String username;
+    private String name;
 
     private String type;
 }
