@@ -1,10 +1,10 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.common.BaseResult;
+import com.example.springboot.common.CommonPage;
 import com.example.springboot.common.annotation.LoginUser;
 import com.example.springboot.common.annotation.NeedAuth;
 import com.example.springboot.common.annotation.PassToken;
-import com.example.springboot.common.dto.AdminUserDTO;
 import com.example.springboot.common.dto.LoginDTO;
 import com.example.springboot.common.form.AdminUserListForm;
 import com.example.springboot.common.form.ModifyPasswordForm;
@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -43,9 +44,10 @@ public class UserAuthController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public BaseResult<AdminUserDTO> list(AdminUserListForm form) {
+    public BaseResult<CommonPage<AdminUser>> list(AdminUserListForm form) {
 
-        return adminUserService.list(form);
+        List<AdminUser> adminUserList =  adminUserService.list(form);
+        return BaseResult.ok(CommonPage.restPage(adminUserList));
     }
 
 }

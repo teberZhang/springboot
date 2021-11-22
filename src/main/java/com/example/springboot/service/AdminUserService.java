@@ -7,14 +7,12 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.springboot.common.BaseResult;
 import com.example.springboot.common.config.SpringToBootConfig;
-import com.example.springboot.common.dto.AdminUserDTO;
 import com.example.springboot.common.dto.LoginDTO;
 import com.example.springboot.common.form.AdminUserListForm;
 import com.example.springboot.common.form.ModifyPasswordForm;
 import com.example.springboot.entity.AdminUser;
 import com.example.springboot.mapper.AdminUserMapper;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,19 +80,12 @@ public class AdminUserService {
         return BaseResult.ok();
     }
 
-    public BaseResult<AdminUserDTO> list(AdminUserListForm form) {
+    public List<AdminUser> list(AdminUserListForm form) {
 
         System.out.println("form:" + form);
         PageHelper.startPage(form.getPage(), form.getPageSize());
         List<AdminUser> adminUserList = adminUserMapper.SelectAllAdminUserByPageHelper(form);
-        PageInfo<AdminUser> pageInfo = new PageInfo<AdminUser>(adminUserList);
-        AdminUserDTO adminUserDTO = new AdminUserDTO();
-        System.out.println("adminUserList = " + adminUserList);
-        adminUserDTO.setList(adminUserList);
-        adminUserDTO.setPage(form.getPage());
-        adminUserDTO.setPageSize(form.getPageSize());
-        adminUserDTO.setCount(pageInfo.getTotal());
-        return BaseResult.ok(adminUserDTO);
+        return adminUserList;
     }
 
     public AdminUser findUserById(int id) {
