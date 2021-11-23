@@ -10,6 +10,7 @@ import com.example.springboot.common.config.SpringToBootConfig;
 import com.example.springboot.common.dto.LoginDTO;
 import com.example.springboot.common.form.AdminUserListForm;
 import com.example.springboot.common.form.ModifyPasswordForm;
+import com.example.springboot.common.service.RedisService;
 import com.example.springboot.entity.AdminUser;
 import com.example.springboot.mapper.AdminUserMapper;
 import com.github.pagehelper.PageHelper;
@@ -27,6 +28,9 @@ public class AdminUserService {
 
     @Autowired
     private SpringToBootConfig springToBootConfig;
+
+    @Autowired
+    private RedisService redisService;
 
     public AdminUserService(AdminUserMapper adminUserMapper) {
         this.adminUserMapper = adminUserMapper;
@@ -92,5 +96,22 @@ public class AdminUserService {
         AdminUser adminUser = new AdminUser();
         adminUser.setId(id);
         return adminUserMapper.Sel(adminUser);
+    }
+
+    public AdminUser getAdmin(AdminUser adminUser) {
+        String name = adminUser.getName();
+        String key = "springboot:" + name;
+        System.out.println("key:" + key);
+        System.out.println("keyValue:" + redisService.get(key));
+        return (AdminUser) redisService.get(key);
+    }
+
+    public boolean setAdmin(AdminUser adminUser) {
+        String name = adminUser.getName();
+        String key = "springboot:" + name;
+        System.out.println("key:" + key);
+        redisService.set(key, adminUser);
+        redisService.expire(key, 60);
+        return true;
     }
 }

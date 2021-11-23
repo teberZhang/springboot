@@ -1,19 +1,16 @@
 package com.example.springboot.common.dto;
 
-import com.example.springboot.entity.AdminUser;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class AdminUserDTO {
 
-    private List<AdminUser> list;
+    private Integer id;
 
-    private Long count;
+    private String name;
 
-    private Integer page;
+    private String password;
 
-    private Integer pageSize;
+    private String type;
 
 }

@@ -46,11 +46,14 @@
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
             <version>${spring-boot-starter-data-jdbc.version}</version>
         </dependency>
+
+        <!-- redis依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
             <version>${spring-boot-starter-data-redis.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
