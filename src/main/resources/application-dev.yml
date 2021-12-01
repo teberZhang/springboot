@@ -25,6 +25,19 @@ spring-to-boot:
   sync-day-before: -7
   sync-day-before-desc: 7
   token-expire-hour: 12
+
+# 微信支付配置
+wx:
+  pay:
+    # 微信开发平台app_id
+    app_id: a
+    # 商户号
+    partner: b
+    # 商户key
+    partnerkey: c
+    # 回调地址
+    notifyurl: d
+
 logging:
   level:
     com.example.springboot.mapper: debug

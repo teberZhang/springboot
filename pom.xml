@@ -34,6 +34,7 @@
         <spring-boot-starter-data-redis.version>2.5.6</spring-boot-starter-data-redis.version>
         <spring-boot-starter-data-jdbc.version>2.5.6</spring-boot-starter-data-jdbc.version>
         <spring-boot-starter-amqp.version>2.5.6</spring-boot-starter-amqp.version>
+        <github.wxpay.version>0.0.3</github.wxpay.version>
     </properties>
     <dependencies>
         <dependency>
@@ -150,6 +151,13 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
             <version>${pagehelper.version}</version>
+        </dependency>
+
+        <!--微信支付-->
+        <dependency>
+            <groupId>com.github.wxpay</groupId>
+            <artifactId>wxpay-sdk</artifactId>
+            <version>${github.wxpay.version}</version>
         </dependency>
 
     </dependencies>
