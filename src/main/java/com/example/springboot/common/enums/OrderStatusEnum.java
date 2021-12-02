@@ -11,19 +11,19 @@ public enum OrderStatusEnum {
 
     private final String code;
 
-    private final String name;
+    private final String label;
 
     public String getCode() {
         return code;
     }
 
-    public String getName() {
-        return name;
+    public String getLabel() {
+        return label;
     }
 
-    OrderStatusEnum(String code, String name) {
+    OrderStatusEnum(String code, String label) {
         this.code = code;
-        this.name = name;
+        this.label = label;
     }
 
     /***
@@ -32,11 +32,25 @@ public enum OrderStatusEnum {
      * @return
      */
     public static boolean isValidStatus(String code) {
-        for (OrderStatusEnum value : OrderStatusEnum.values()) {
-            if (code.equals(value.getCode())) {
+        for (OrderStatusEnum statusEnum : OrderStatusEnum.values()) {
+            if (code.equals(statusEnum.getCode())) {
                 return true;
             }
         }
         return false;
+    }
+
+    /***
+     * 根据枚举值获取枚举描述
+     * @param code
+     * @return
+     */
+    public static String getStatusLabel(String code) {
+        for (OrderStatusEnum statusEnum : OrderStatusEnum.values()) {
+            if (code.equals(statusEnum.getCode())) {
+                return statusEnum.getLabel();
+            }
+        }
+        return "";
     }
 }
