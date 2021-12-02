@@ -9,13 +9,16 @@ import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.ValidationException;
 import java.io.IOException;
 
 /**
@@ -128,6 +131,21 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public BaseResult<?> exception(Exception ex) {
         return resultFormat(Constants.E99999, ex);
+    }
+
+
+    //参数校验异常MethodArgumentNotValidException、ValidationException
+    @ExceptionHandler({MethodArgumentNotValidException.class, ValidationException.class})
+    public BaseResult<?> violationException(Exception ce) {
+        if (ce instanceof MethodArgumentNotValidException){
+            BindingResult bindingResult = ((MethodArgumentNotValidException) ce).getBindingResult();
+            if (bindingResult.hasErrors()){
+                return customExFormat(Constants.E50013, new CustomException(Constants.E50013, bindingResult.getAllErrors().get(0).getDefaultMessage()));
+            }
+        } else if (ce instanceof ValidationException){
+            return customExFormat(Constants.E50013, new CustomException(Constants.E50013, ce.getMessage()));
+        }
+        return customExFormat(Constants.E50013, new CustomException(Constants.E50013, ce.getMessage()));
     }
 
     /**

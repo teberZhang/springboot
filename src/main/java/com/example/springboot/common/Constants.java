@@ -18,6 +18,7 @@ public class Constants {
     public static final Integer E50010 = 50010; // 运行时异常 HttpRequestMethodNotSupportedException
     public static final Integer E50011 = 50011; // 运行时异常 HttpMediaTypeNotAcceptableException
     public static final Integer E50012 = 50012; // 运行时异常 StackOverflowError
+    public static final Integer E50013 = 50013; // 参数校验错误 MethodArgumentNotValidException
 
     // 自定义异常CustomException相关
     public static final Integer E20050 = 20050; // 自定义异常默认显示的状态编码

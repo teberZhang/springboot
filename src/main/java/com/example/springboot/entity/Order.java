@@ -8,7 +8,6 @@ import java.util.Date;
 
 @Data
 public class Order {
-
     private BigInteger order_id;
 
     private String order_sn;
@@ -24,18 +23,4 @@ public class Order {
     private Date create_at;
 
     private Date update_at;
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "order_id=" + order_id +
-                ", order_sn='" + order_sn + '\'' +
-                ", doctor_id=" + doctor_id +
-                ", user_id=" + user_id +
-                ", total_fee=" + total_fee +
-                ", status='" + status + '\'' +
-                ", create_at=" + create_at +
-                ", update_at=" + update_at +
-                '}';
-    }
 }

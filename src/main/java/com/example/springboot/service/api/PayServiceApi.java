@@ -20,12 +20,25 @@ public class PayServiceApi {
         System.out.println(dto);
         // 查询订单
         Order orderQuery = new Order();
-        orderQuery.setOrder_sn(dto.getOrderNo());
-        System.out.println(orderQuery);
+        //orderQuery.setOrderSn(dto.getOrderNo());
         Order orderInfo = orderService.sel(orderQuery);
         if (ObjectUtil.isNull(orderInfo)){
             return BaseResult.errorMsg("订单不存在");
         }
+//        UnifiedOrderDto unifiedOrderDto = BeanUtil.copyProperties(dto, UnifiedOrderDto.class);
+//        unifiedOrderDto.setOrderNo(orderInfo.getOrder_sn());
+//        unifiedOrderDto.setAmount(orderInfo.getTotal_fee());
+//        unifiedOrderDto.setIpAddr(SpringUtil.getRealIp());
+//        unifiedOrderDto.setOrgId(organizationResp.getOrganizationId());
+//        unifiedOrderDto.setOrgCode(organizationResp.getOrganizationCode());
+//        unifiedOrderDto.setPlatformReceive(ObjectUtil.isNull(organizationResp.getIsSettlement()) || 1==organizationResp.getIsSettlement());
+//        unifiedOrderDto.setProfitSharing(orderAskBase.getSharingTag().toString());
+//        unifiedOrderDto.setNotifyUrl(weChatPayProperties.getNotifyUrl());
+//        unifiedOrderDto.setOrderSource(projectProfilesProperties.getProjectCode());
+//        unifiedOrderDto.setOrderSourceDesc(projectProfilesProperties.getProjectName());
+//        unifiedOrderDto.setOrderType(OrderTypeEnum.ASK_ORDER.getCode());
+//        unifiedOrderDto.setOrderTypeDesc(OrderTypeEnum.ASK_ORDER.getName());
+//        unifiedOrderDto.setPayChannel(PayChannelEnum.WX_PAY.getChannel());
         return BaseResult.ok(orderInfo);
     }
 }

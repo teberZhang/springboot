@@ -35,6 +35,8 @@
         <spring-boot-starter-data-jdbc.version>2.5.6</spring-boot-starter-data-jdbc.version>
         <spring-boot-starter-amqp.version>2.5.6</spring-boot-starter-amqp.version>
         <github.wxpay.version>0.0.3</github.wxpay.version>
+        <hibernate.validator.version>6.0.17.Final</hibernate.validator.version>
+        <spring-boot-starter-validation.version>2.5.6</spring-boot-starter-validation.version>
     </properties>
     <dependencies>
         <dependency>
@@ -164,6 +166,18 @@
             <artifactId>annotations</artifactId>
             <version>RELEASE</version>
             <scope>compile</scope>
+        </dependency>
+
+        <!--  hibernate校验器  -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+            <version>${spring-boot-starter-validation.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate.validator.version}</version>
         </dependency>
 
     </dependencies>
