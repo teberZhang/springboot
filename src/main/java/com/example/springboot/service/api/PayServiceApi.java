@@ -18,9 +18,10 @@ public class PayServiceApi {
 
     public BaseResult<?> wxPay(WXPayDto dto) {
         System.out.println(dto);
+        System.out.println("${spring.jackson.timezone}");
         // 查询订单
         Order orderQuery = new Order();
-        //orderQuery.setOrderSn(dto.getOrderNo());
+        orderQuery.setOrderSn(dto.getOrderNo());
         Order orderInfo = orderService.sel(orderQuery);
         if (ObjectUtil.isNull(orderInfo)){
             return BaseResult.errorMsg("订单不存在");

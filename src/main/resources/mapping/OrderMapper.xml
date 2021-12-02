@@ -15,8 +15,8 @@
 
     <select id="Sel" resultType="com.example.springboot.entity.Order">
         select * from `order` where 1=1
-        <if test="order.order_sn != null">
-            AND order_sn = #{order.order_sn}
+        <if test="order.orderSn != null">
+            AND order_sn = #{order.orderSn}
         </if>
         <if test="order.status != null">
             AND status = #{order.status}
@@ -38,8 +38,8 @@
 
     <select id="SelectAllAdminUserByPageHelper" resultType="com.example.springboot.entity.Order" parameterType="com.example.springboot.common.form.OrderListForm">
         select * from `order` where 1=1
-        <if test="queryParam.user_id != null">
-            AND user_id = #{queryParam.user_id}
+        <if test="queryParam.userId != null">
+            AND user_id = #{queryParam.userId}
         </if>
     </select>
 

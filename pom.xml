@@ -37,6 +37,7 @@
         <github.wxpay.version>0.0.3</github.wxpay.version>
         <hibernate.validator.version>6.0.17.Final</hibernate.validator.version>
         <spring-boot-starter-validation.version>2.5.6</spring-boot-starter-validation.version>
+        <assertj-core.version>3.19.0</assertj-core.version>
     </properties>
     <dependencies>
         <dependency>
@@ -178,6 +179,13 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate.validator.version}</version>
+        </dependency>
+
+        <!--  枚举类校验器-EnumValue  -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
         </dependency>
 
     </dependencies>

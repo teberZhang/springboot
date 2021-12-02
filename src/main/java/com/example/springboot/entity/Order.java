@@ -1,26 +1,40 @@
 package com.example.springboot.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 
 @Data
-public class Order {
-    private BigInteger order_id;
+public class Order implements Serializable {
 
-    private String order_sn;
+    private static final long serialVersionUID = 4286442241675639887L;
 
-    private Integer doctor_id;
+    private BigInteger orderId;
 
-    private Integer user_id;
+    private String orderSn;
 
-    private BigDecimal total_fee;
+    private Integer doctorId;
+
+    private Integer userId;
+
+    private BigDecimal totalFee;
 
     private String status;
 
-    private Date create_at;
+    // 后台传递给前台
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    // 前台传递给后端
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createAt;
 
-    private Date update_at;
+    // 后台传递给前台
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
+    // 前台传递给后端
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date updateAt;
 }

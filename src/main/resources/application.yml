@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: dev
+  jackson:
+    time-zone: Asia/Shanghai
 spring-to-boot:
   sync-day-before: -7
   sync-day-before-desc: 7
