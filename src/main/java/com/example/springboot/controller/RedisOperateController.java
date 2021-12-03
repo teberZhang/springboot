@@ -1,6 +1,7 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.common.BaseResult;
+import com.example.springboot.common.annotation.log.SpringLogs;
 import com.example.springboot.entity.AdminUser;
 import com.example.springboot.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,14 @@ public class RedisOperateController {
     private AdminUserService adminUserService;
 
     @RequestMapping(value = "/getAdmin", method = RequestMethod.POST)
+    @SpringLogs(serviceType="RedisOperateController.getAdmin", description="Redis操作:获取admin信息")
     public BaseResult<AdminUser> getAdmin(@RequestBody AdminUser user) {
 
         return BaseResult.ok(adminUserService.getAdmin(user));
     }
 
     @RequestMapping(value = "/setAdmin", method = RequestMethod.POST)
+    @SpringLogs(serviceType="RedisOperateController.setAdmin", description="Redis操作:设置admin信息")
     public BaseResult<?> setAdmin(@RequestBody AdminUser user) {
 
         return BaseResult.ok(adminUserService.setAdmin(user));
