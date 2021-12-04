@@ -1,7 +1,5 @@
 package com.example.springboot.common.annotation.valid;
 
-import org.assertj.core.util.Strings;
-
 import javax.validation.Constraint;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -57,11 +55,11 @@ public @interface EnumValue {
             try {
                 Method method = enumClass.getMethod(enumMethod, valueClass);
                 if (!Boolean.TYPE.equals(method.getReturnType()) && !Boolean.class.equals(method.getReturnType())) {
-                    throw new RuntimeException(Strings.formatIfArgs("%s method return is not boolean type in the %s class", enumMethod, enumClass));
+                    throw new RuntimeException(String.format("%s method return is not boolean type in the %s class", enumMethod, enumClass));
                 }
 
                 if(!Modifier.isStatic(method.getModifiers())) {
-                    throw new RuntimeException(Strings.formatIfArgs("%s method is not static method in the %s class", enumMethod, enumClass));
+                    throw new RuntimeException(String.format("%s method is not static method in the %s class", enumMethod, enumClass));
                 }
 
                 Boolean result = (Boolean)method.invoke(null, value);
@@ -69,7 +67,7 @@ public @interface EnumValue {
             } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
                 throw new RuntimeException(e);
             } catch (NoSuchMethodException | SecurityException e) {
-                throw new RuntimeException(Strings.formatIfArgs("This %s(%s) method does not exist in the %s", enumMethod, valueClass, enumClass), e);
+                throw new RuntimeException(String.format("This %s(%s) method does not exist in the %s", enumMethod, valueClass, enumClass), e);
             }
         }
 
