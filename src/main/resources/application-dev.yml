@@ -6,6 +6,11 @@ spring:
     password: a123456
     url: jdbc:mysql://localhost:3307/springboot?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.jdbc.Driver
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
 
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml

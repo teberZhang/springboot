@@ -42,6 +42,7 @@
         <assertj-core.version>3.19.0</assertj-core.version>
         <fastjson.version>1.2.47</fastjson.version>
         <httpclient.version>4.5.7</httpclient.version>
+
     </properties>
     <dependencies>
         <dependency>
@@ -220,8 +221,6 @@
             <artifactId>httpclient</artifactId>
             <version>${httpclient.version}</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
