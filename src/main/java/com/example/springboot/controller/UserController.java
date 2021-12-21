@@ -3,7 +3,7 @@ package com.example.springboot.controller;
 import com.example.springboot.common.annotation.log.SpringLogs;
 import com.example.springboot.common.form.UserAddForm;
 import com.example.springboot.entity.User;
-import com.example.springboot.service.UserService;
+import com.example.springboot.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +14,7 @@ import javax.validation.Valid;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @RequestMapping(value = "/selectUserById", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody

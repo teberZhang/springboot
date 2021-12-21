@@ -4,7 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.example.springboot.common.BaseResult;
 import com.example.springboot.common.dto.WXPayDto;
 import com.example.springboot.entity.Order;
-import com.example.springboot.service.OrderService;
+import com.example.springboot.service.impl.OrderServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class PayServiceApi {
 
     @Autowired
-    private OrderService orderService;
+    private OrderServiceImpl orderServiceImpl;
 
     public BaseResult<?> wxPay(WXPayDto dto) {
         System.out.println(dto);
@@ -22,7 +22,7 @@ public class PayServiceApi {
         // 查询订单
         Order orderQuery = new Order();
         orderQuery.setOrderSn(dto.getOrderNo());
-        Order orderInfo = orderService.sel(orderQuery);
+        Order orderInfo = orderServiceImpl.sel(orderQuery);
         if (ObjectUtil.isNull(orderInfo)){
             return BaseResult.errorMsg("订单不存在");
         }

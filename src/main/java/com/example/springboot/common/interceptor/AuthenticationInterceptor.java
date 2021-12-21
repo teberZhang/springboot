@@ -29,7 +29,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     public static final String USER_KEY = "userId";
 
     @Autowired
-    AdminUserService adminUserService;
+    private AdminUserService adminUserService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

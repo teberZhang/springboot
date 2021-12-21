@@ -3,7 +3,7 @@ package com.example.springboot.controller;
 import com.example.springboot.common.BaseResult;
 import com.example.springboot.common.annotation.log.SpringLogs;
 import com.example.springboot.entity.AdminUser;
-import com.example.springboot.service.AdminUserService;
+import com.example.springboot.service.impl.AdminUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RedisOperateController {
 
     @Autowired
-    private AdminUserService adminUserService;
+    private AdminUserServiceImpl adminUserService;
 
     @RequestMapping(value = "/getAdmin", method = RequestMethod.POST)
     @SpringLogs(serviceType="RedisOperateController.getAdmin", description="Redis操作:获取admin信息")
