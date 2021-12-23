@@ -1,60 +1,52 @@
 package com.example.springboot.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.springboot.common.form.UserAddForm;
 import com.example.springboot.entity.User;
 import com.example.springboot.mapper.UserMapper;
-import com.example.springboot.service.UserService;
+import com.example.springboot.service.IUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
+
+@Slf4j
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Autowired
     private UserMapper userMapper;
 
-    public User sel(User user) {
-        return userMapper.Sel(user);
+    final Base64.Decoder decoder = Base64.getDecoder();
+
+    @Override
+    public User getUserInfo(User user) {
+        return userMapper.selectOne(new QueryWrapper<User>().eq("id", user.getId()));
     }
 
-    public String delete(User user) {
-        int result = userMapper.Delete(user);
-        if (result == 1) {
-            return "删除成功";
-        } else {
-            return "删除失败";
-        }
+    @Override
+    public Integer deleteUser(User user) {
+       return userMapper.deleteById(user.getId());
     }
 
-    public String update(User user) {
-        int result = userMapper.Update(user);
-        if (result == 1) {
-            return "修改成功";
-        } else {
-            return "修改失败";
-        }
+    @Override
+    public Integer updateUser(User user) {
+        log.info("修改用户信息", user);
+        return userMapper.update(user, new QueryWrapper<User>().eq("id", user.getId()));
     }
 
-    public String add(User user) {
-        int result = userMapper.Add(user);
-        if (result == 1) {
-            return "添加成功";
-        } else {
-            return "添加失败";
-        }
+    @Override
+    public Integer addUser(User user) {
+        return userMapper.insert(user);
     }
 
-    public String userAdd(UserAddForm userAddForm) {
+    @Override
+    public Integer userAdd(UserAddForm userAddForm) {
         User user = new User();
-        user.setAge(userAddForm.getAge());
-        user.setPassword(userAddForm.getPassword());
-        user.setUsername(userAddForm.getUsername());
-        user.setAddress(userAddForm.getAddress());
-        int result = userMapper.Add(user);
-        if (result == 1) {
-            return "添加成功";
-        } else {
-            return "添加失败";
-        }
+        BeanUtil.copyProperties(user, userAddForm);
+        return userMapper.insert(user);
     }
 }

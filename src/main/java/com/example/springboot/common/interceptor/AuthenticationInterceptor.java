@@ -11,7 +11,7 @@ import com.example.springboot.common.annotation.NeedAuth;
 import com.example.springboot.common.annotation.PassToken;
 import com.example.springboot.common.exception.CustomException;
 import com.example.springboot.entity.AdminUser;
-import com.example.springboot.service.AdminUserService;
+import com.example.springboot.service.IAdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -29,7 +29,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     public static final String USER_KEY = "userId";
 
     @Autowired
-    private AdminUserService adminUserService;
+    private IAdminUserService adminUserService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -65,7 +65,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         } catch (JWTDecodeException j) {
             throw new CustomException(Constants.E40001, "系统异常,请重新登录");
         }
-        AdminUser adminUser = adminUserService.findUserById(Integer.parseInt(userId));
+        AdminUser adminUser = adminUserService.getById(Integer.parseInt(userId));
         if (adminUser == null) {
             throw new CustomException(Constants.E40001, "未找到该用户,请重新登录");
         }

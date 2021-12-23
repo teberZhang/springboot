@@ -1,19 +1,16 @@
 package com.example.springboot.mapper;
 
-import com.example.springboot.common.form.AdminUserListForm;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.springboot.entity.AdminUser;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author teber_zhang
+ * @since 2021-12-22
+ */
+public interface AdminUserMapper extends BaseMapper<AdminUser> {
 
-@Mapper
-@Repository
-public interface AdminUserMapper {
-    AdminUser Sel(@Param("adminUser") AdminUser adminUser);
-
-    int UpdateById(@Param("adminUser") AdminUser adminUser);
-
-    List<AdminUser> SelectAllAdminUserByPageHelper(@Param("queryParam") AdminUserListForm adminUserListForm);
 }

@@ -5,25 +5,28 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.springboot.common.BaseResult;
 import com.example.springboot.common.config.SpringToBootConfig;
+import com.example.springboot.common.constant.RedisKeyConstants;
 import com.example.springboot.common.dto.LoginDTO;
 import com.example.springboot.common.form.AdminUserListForm;
 import com.example.springboot.common.form.ModifyPasswordForm;
 import com.example.springboot.common.service.RedisService;
+import com.example.springboot.common.vo.CommonPageVo;
 import com.example.springboot.entity.AdminUser;
 import com.example.springboot.mapper.AdminUserMapper;
-import com.example.springboot.service.AdminUserService;
-import com.github.pagehelper.PageHelper;
+import com.example.springboot.service.IAdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 @Service
-public class AdminUserServiceImpl implements AdminUserService {
+public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser> implements IAdminUserService {
 
     @Autowired
     private AdminUserMapper adminUserMapper;
@@ -40,7 +43,9 @@ public class AdminUserServiceImpl implements AdminUserService {
         }
 
         // 查找用户是否存在
-        AdminUser adminUserFind = adminUserMapper.Sel(adminUser);
+        AdminUser adminUserFind = adminUserMapper.selectOne(
+                new QueryWrapper<AdminUser>().eq("name", adminUser.getName())
+        );
         if (Objects.isNull(adminUserFind)) {
             return BaseResult.errorMsg("账号不存在");
         }
@@ -60,7 +65,6 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     public BaseResult<?> modifyPassword(AdminUser adminUser, ModifyPasswordForm form) {
 
-        System.out.println(adminUser);
         String newPassword = StrUtil.trim(form.getNewPassword());
         String rePassword = StrUtil.trim(form.getRePassword());
 
@@ -77,39 +81,38 @@ public class AdminUserServiceImpl implements AdminUserService {
         }
 
         adminUser.setPassword(SecureUtil.md5(newPassword));
-        adminUserMapper.UpdateById(adminUser);
+        adminUserMapper.update(adminUser, new QueryWrapper<AdminUser>().eq("id", adminUser.getId()));
 
         return BaseResult.ok();
     }
 
-    public List<AdminUser> list(AdminUserListForm form) {
+    public CommonPageVo adminUserList(AdminUserListForm form) {
 
-        System.out.println("form:" + form);
-        PageHelper.startPage(form.getPage(), form.getPageSize());
-        List<AdminUser> adminUserList = adminUserMapper.SelectAllAdminUserByPageHelper(form);
-        return adminUserList;
+        CommonPageVo commonPageVo = new CommonPageVo();
+        Page<AdminUser> page = new Page<AdminUser>(form.getPage(), form.getPageSize());
+        adminUserMapper.selectPage(page, null);
+        commonPageVo.setPage(form.getPage());
+        commonPageVo.setSize(form.getPageSize());
+        commonPageVo.setTotal(page.getTotal());
+        commonPageVo.setList(page.getRecords());
+        return commonPageVo;
     }
 
     public AdminUser findUserById(int id) {
-        AdminUser adminUser = new AdminUser();
-        adminUser.setId(id);
-        return adminUserMapper.Sel(adminUser);
+        return adminUserMapper.selectById(id);
     }
 
     public AdminUser getAdmin(AdminUser adminUser) {
         String name = adminUser.getName();
-        String key = "springboot:" + name;
-        System.out.println("key:" + key);
-        System.out.println("keyValue:" + redisService.get(key));
+        String key = RedisKeyConstants.ADMIN_USER_INFO + name;
         return (AdminUser) redisService.get(key);
     }
 
     public boolean setAdmin(AdminUser adminUser) {
         String name = adminUser.getName();
-        String key = "springboot:" + name;
-        System.out.println("key:" + key);
+        String key = RedisKeyConstants.ADMIN_USER_INFO + name;
         redisService.set(key, adminUser);
-        redisService.expire(key, 60);
+        redisService.expire(key, RedisKeyConstants.COMMON_EXPIRE);
         return true;
     }
 }
