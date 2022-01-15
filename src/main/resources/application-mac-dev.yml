@@ -1,0 +1,55 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    username: root
+    password: a123456
+    url: jdbc:mysql://localhost:3356/springboot?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  global-config:
+    # 逻辑删除配置
+    db-config:
+      # 删除前
+      logic-not-delete-value: 1
+      # 删除后
+      logic-delete-value: 0
+
+
+redis:
+  host: localhost # Redis服务器地址
+  database: 0 # Redis数据库索引（默认为0）
+  port: 6379 # Redis服务器连接端口
+  password: # Redis服务器连接密码（默认为空）
+  timeout: 300ms # 连接超时时间（毫秒）
+spring-to-boot:
+  sync-day-before: -7
+  sync-day-before-desc: 7
+  token-expire-hour: 12
+
+# 微信支付配置
+wx:
+  pay:
+    # 微信开发平台app_id
+    app_id: a
+    # 商户号
+    partner: b
+    # 商户key
+    partnerkey: c
+    # 回调地址
+    notifyurl: d
+
+logging:
+  level:
+    com.example.springboot.mapper: debug
