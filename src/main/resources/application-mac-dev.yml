@@ -16,11 +16,6 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
       type: com.zaxxer.hikari.HikariDataSource
       connection-timeout: 1000
-#  jackson:
-#    date-format: yyyy-MM-dd HH:mm:ss
-#    time-zone: GMT+8
-#    serialization:
-#    write-dates-as-timestamps: false
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
