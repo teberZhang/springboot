@@ -1,6 +1,6 @@
 package com.example.springboot.common.vo;
 
-import com.example.springboot.entity.AdminUser;
+import com.example.springboot.orm.entity.master.AdminUser;
 import lombok.Data;
 
 import java.util.List;

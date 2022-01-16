@@ -1,4 +1,4 @@
-package com.example.springboot.entity;
+package com.example.springboot.orm.entity.slave;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;

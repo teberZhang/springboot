@@ -2,7 +2,7 @@ package com.example.springboot.common.resolver;
 
 import com.example.springboot.common.annotation.LoginUser;
 import com.example.springboot.common.interceptor.AuthenticationInterceptor;
-import com.example.springboot.entity.AdminUser;
+import com.example.springboot.orm.entity.master.AdminUser;
 import com.example.springboot.service.impl.AdminUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;

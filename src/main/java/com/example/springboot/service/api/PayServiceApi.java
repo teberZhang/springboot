@@ -3,7 +3,7 @@ package com.example.springboot.service.api;
 import cn.hutool.core.util.ObjectUtil;
 import com.example.springboot.common.BaseResult;
 import com.example.springboot.common.dto.WXPayDto;
-import com.example.springboot.entity.Order;
+import com.example.springboot.orm.entity.slave.Order;
 import com.example.springboot.service.impl.OrderServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

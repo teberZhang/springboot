@@ -2,7 +2,7 @@ package com.example.springboot.controller;
 
 import com.example.springboot.common.BaseResult;
 import com.example.springboot.common.annotation.log.SpringLogs;
-import com.example.springboot.entity.AdminUser;
+import com.example.springboot.orm.entity.master.AdminUser;
 import com.example.springboot.service.impl.AdminUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

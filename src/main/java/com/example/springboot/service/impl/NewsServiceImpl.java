@@ -1,7 +1,7 @@
 package com.example.springboot.service.impl;
 
-import com.example.springboot.entity.News;
-import com.example.springboot.mapper.NewsMapper;
+import com.example.springboot.orm.entity.slave.News;
+import com.example.springboot.orm.mapper.slave.NewsMapper;
 import com.example.springboot.service.INewsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.example.springboot.service;
 
-import com.example.springboot.entity.News;
+import com.example.springboot.orm.entity.slave.News;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

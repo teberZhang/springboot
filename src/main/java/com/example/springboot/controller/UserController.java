@@ -3,7 +3,7 @@ package com.example.springboot.controller;
 import com.example.springboot.common.BaseResult;
 import com.example.springboot.common.annotation.log.SpringLogs;
 import com.example.springboot.common.form.UserAddForm;
-import com.example.springboot.entity.User;
+import com.example.springboot.orm.entity.master.User;
 import com.example.springboot.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

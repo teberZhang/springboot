@@ -1,4 +1,4 @@
-package com.example.springboot.entity;
+package com.example.springboot.orm.entity.slave;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

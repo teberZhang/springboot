@@ -43,6 +43,7 @@
         <mybatis-plus-boot-starter.version>3.2.0</mybatis-plus-boot-starter.version>
         <mybatis-plus-generator.version>3.2.0</mybatis-plus-generator.version>
         <freemarker.version>2.3.28</freemarker.version>
+        <dynamic-datasource.version>3.1.1</dynamic-datasource.version>
     </properties>
     <dependencies>
         <dependency>
@@ -221,16 +222,16 @@
             <version>${freemarker.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+            <version>${dynamic-datasource.version}</version>
+        </dependency>
 
+        <!-- mybatis plus 多数据源 -->
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15on</artifactId>
-            <version>1.59</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcpkix-jdk15on</artifactId>
             <version>1.59</version>
         </dependency>
 

@@ -10,7 +10,7 @@ import com.example.springboot.common.Constants;
 import com.example.springboot.common.annotation.NeedAuth;
 import com.example.springboot.common.annotation.PassToken;
 import com.example.springboot.common.exception.CustomException;
-import com.example.springboot.entity.AdminUser;
+import com.example.springboot.orm.entity.master.AdminUser;
 import com.example.springboot.service.IAdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -2,7 +2,7 @@ package com.example.springboot.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.springboot.common.form.UserAddForm;
-import com.example.springboot.entity.User;
+import com.example.springboot.orm.entity.master.User;
 
 public interface IUserService extends IService<User> {
 

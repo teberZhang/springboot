@@ -1,8 +1,8 @@
 package com.example.springboot.service.impl;
 
 import com.example.springboot.common.form.UserAddForm;
-import com.example.springboot.entity.Order;
-import com.example.springboot.mapper.OrderMapper;
+import com.example.springboot.orm.entity.slave.Order;
+import com.example.springboot.orm.mapper.slave.OrderMapper;
 import com.example.springboot.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.example.springboot.entity;
+package com.example.springboot.orm.entity.master;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

@@ -8,7 +8,7 @@ import com.example.springboot.common.annotation.log.SpringLogs;
 import com.example.springboot.common.dto.LoginDTO;
 import com.example.springboot.common.form.AdminUserListForm;
 import com.example.springboot.common.form.ModifyPasswordForm;
-import com.example.springboot.entity.AdminUser;
+import com.example.springboot.orm.entity.master.AdminUser;
 import com.example.springboot.service.IAdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
