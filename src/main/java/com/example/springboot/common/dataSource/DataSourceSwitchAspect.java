@@ -27,7 +27,7 @@ public class DataSourceSwitchAspect {
     }
 
     @Before("slaveAspect()")
-    public void mid() {
+    public void slave() {
         DbContextHolder.setDbType(DbTypeEnum.SLAVE);
     }
 }
