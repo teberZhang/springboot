@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: mac-dev
   jackson:
     time-zone: Asia/Shanghai
 spring-to-boot:

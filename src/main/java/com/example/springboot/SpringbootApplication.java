@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
 
-@MapperScan("com.example.springboot.mapper") //扫描的mapper
+//@MapperScan("com.example.springboot.orm.mapper") //扫描的mapper
 @SpringBootApplication
 public class SpringbootApplication {
 

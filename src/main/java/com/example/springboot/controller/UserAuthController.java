@@ -1,7 +1,6 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.common.BaseResult;
-import com.example.springboot.common.CommonPage;
 import com.example.springboot.common.annotation.LoginUser;
 import com.example.springboot.common.annotation.NeedAuth;
 import com.example.springboot.common.annotation.PassToken;
@@ -9,21 +8,20 @@ import com.example.springboot.common.annotation.log.SpringLogs;
 import com.example.springboot.common.dto.LoginDTO;
 import com.example.springboot.common.form.AdminUserListForm;
 import com.example.springboot.common.form.ModifyPasswordForm;
-import com.example.springboot.entity.AdminUser;
-import com.example.springboot.service.AdminUserService;
+import com.example.springboot.orm.entity.master.AdminUser;
+import com.example.springboot.service.IAdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")
 public class UserAuthController {
 
     @Autowired
-    private AdminUserService adminUserService;
+    private IAdminUserService adminUserService;
 
     @PassToken
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -48,10 +46,9 @@ public class UserAuthController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     @SpringLogs(serviceType="UserAuthController.list", description="用户列表获取")
-    public BaseResult<CommonPage<AdminUser>> list(AdminUserListForm form) {
+    public BaseResult<?> list(AdminUserListForm form) {
 
-        List<AdminUser> adminUserList =  adminUserService.list(form);
-        return BaseResult.ok(CommonPage.restPage(adminUserList));
+        return BaseResult.ok(adminUserService.adminUserList(form));
     }
 
 }
